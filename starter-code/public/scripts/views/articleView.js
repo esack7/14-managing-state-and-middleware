@@ -5,6 +5,7 @@ var app = app || {};
   const articleView = {};
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This function renters the compiled data to the handlebards template on the index.html page. NewArticle.create() calles this. This does not call another function.
   const render = function(article) {
     let template = Handlebars.compile($('#article-template').text());
 
