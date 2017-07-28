@@ -14,12 +14,14 @@ var app = app || {};
   // REVIEW: With ES6 arrow functions, if the function only has one parameter, you don't need parentheses.
   //         This is similar to saying Article.loadAll = function(rows).
     // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+    //This fuction instanciates the new Articles and loads the new article objects in to Article.all sorted by date. This function is called in Article.fetchAll and it does not call another function.
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
     Article.all = rows.map(ele => new Article(ele));
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //This function gets the articles from the DB and then calls loadAll.
   Article.fetchAll = callback => {
     $.get('/articles')
     .then(
@@ -55,6 +57,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //This function is function is counting all the words in each article as well as all the words for all the articles. This is called in the adminView.js in the app.initAdminPage function.
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
@@ -75,6 +78,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //This function is deleting an article from the DB. This is called in the app.Article and it calls app.Article.
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',

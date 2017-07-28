@@ -5,7 +5,7 @@ var app = app || {};
   const aboutController = {};
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-  // (put your response in a comment here)
+  // This function is showing the about section and hiding all the siblings.  It calls the app.repos.requestRepos(). It lives in the repo.js file. It is called when the user clicks on the abouts tab and this happens through the routes tab.
   aboutController.index = () => {
     $('#about').show().siblings().hide();
     app.repos.requestRepos(app.repoView.index);
